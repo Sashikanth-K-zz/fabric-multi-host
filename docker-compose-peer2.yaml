@@ -17,4 +17,4 @@ services:
       - 11051:7051
       - 11053:7053
     volumes:
-        - ./crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/:/etc/hyperledger/crypto/peer
+        - ./crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/:/etc/hyperledger/crypto/peer
