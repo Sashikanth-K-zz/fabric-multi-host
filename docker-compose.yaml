@@ -13,10 +13,10 @@ services:
     environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org1.example.com-cert.pem
-      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/e6bbec1c7d3529414ff60ca089f5c76019ec72c9796f1117a3c57f9e9aae5cc7_sk
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/f1f666fa0252f46d6f7d17ba33b2d8d312c9bf4042d50a9404596c4ef74362fd_sk
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org1.example.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/e6bbec1c7d3529414ff60ca089f5c76019ec72c9796f1117a3c57f9e9aae5cc7_sk
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/f1f666fa0252f46d6f7d17ba33b2d8d312c9bf4042d50a9404596c4ef74362fd_sk
     ports:
       - "7054:7054"
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
@@ -29,10 +29,10 @@ services:
     environment:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org2.example.com-cert.pem
-      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/c28ac89fb67bc2be2c0fb8be74d08c3b616d8f71021f2447cc46e8d243594e47_sk
+      - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/57eccd34bf0b3458155d89284ed728b3ed49037615397a8cee37d4df1e144b75_sk
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org2.example.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/c28ac89fb67bc2be2c0fb8be74d08c3b616d8f71021f2447cc46e8d243594e47_sk
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/57eccd34bf0b3458155d89284ed728b3ed49037615397a8cee37d4df1e144b75_sk
     ports:
       - "8054:7054"
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
@@ -80,6 +80,8 @@ services:
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/:/etc/hyperledger/crypto/peer
     depends_on:
       - orderer.example.com
+    extra_hosts:
+     - "orderer.example.com:10.0.0.6"
 
   peer1.org1.example.com:
     container_name: peer1.org1.example.com
@@ -97,6 +99,8 @@ services:
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/:/etc/hyperledger/crypto/peer
     depends_on:
       - orderer.example.com
+    extra_hosts:
+     - "orderer.example.com:10.0.0.6"
 
   peer0.org2.example.com:
     container_name: peer0.org2.example.com
@@ -114,6 +118,8 @@ services:
         - ./crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/:/etc/hyperledger/crypto/peer
     depends_on:
       - orderer.example.com
+    extra_hosts:
+     - "orderer.example.com:10.0.0.6"
 
 
   peer1.org2.example.com:
@@ -132,6 +138,8 @@ services:
         - ./crypto-config/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/:/etc/hyperledger/crypto/peer
     depends_on:
       - orderer.example.com
+    extra_hosts:
+     - "orderer.example.com:10.0.0.6"
     
   cli:
     container_name: cli
@@ -165,3 +173,5 @@ services:
       - peer1.org2.example.com
       - ca.org1.example.com
       - ca.org2.example.com
+    extra_hosts:
+     - "orderer.example.com:10.0.0.6"
