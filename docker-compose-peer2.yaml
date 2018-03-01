@@ -19,7 +19,7 @@ services:
     volumes:
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer2.org1.example.com/:/etc/hyperledger/crypto/peer
     extra_hosts:
-     - "orderer.example.com:138.68.138.161"
+     - "orderer.example.com:10.0.0.6"
   
   cli:
     container_name: cli
@@ -46,4 +46,4 @@ services:
         - ./scripts:/opt/gopath/src/github.com/hyperledger/fabric/peer/scripts/
         - ./channel-artifacts:/opt/gopath/src/github.com/hyperledger/fabric/peer/channel-artifacts
     extra_hosts:
-     - "orderer.example.com:138.68.138.161"
+     - "orderer.example.com:10.0.0.6"
